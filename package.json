@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Tsigie/type-n-speak/issues"
   },
-  "homepage": "https://github.com/Tsigie/type-n-speak#readme"
+  "homepage": "https://github.com/Tsigie/type-n-speak#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.3.1"
+  }
 }

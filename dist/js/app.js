@@ -28,7 +28,7 @@ const getVoices = () => {
 };
 
 getVoices();
-if (synth.onvoiceschange !== undefind) {
+if (synth.onvoiceschange !== undefined) {
   synth.onvoiceschange = getVoices;
 }
 
@@ -42,7 +42,7 @@ const speak = () => {
 // Add background animation
     body.style.background = '#141414 url(img/wave.gif)';
     body.style.backgroundRepeat = 'repeat-x';
-    body.sytle.backgroundSize = '100% 100%';
+    body.style.backgroundSize = '100% 100%';
 
     const speakText = new SpeechSynthesisUtterance(textInput.value);
 
