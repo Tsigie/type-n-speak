@@ -3,13 +3,14 @@ const synth = window.speechSynthesis;
 
 // DOM Elements
 
-const textForm = document.querySelector('#text-form');
+const textForm = document.querySelector('form');
 const textInput = document.querySelector('#text-input');
 const voiceSelect = document.querySelector('#voice-select');
 const rate = document.querySelector('#rate');
 const rateValue = document.querySelector('#rate-value');
 const pitch = document.querySelector('#pitch');
 const pitchValue = document.querySelector('#pitch-value');
+const body = document.querySelector('body');
 
 //Init voices array
 let voices = [];
@@ -19,11 +20,12 @@ const getVoices = () => {
 
   voices.forEach(voice => {
     const option = document.createElement('option');
-    option.textContent = voice,name + '('+ voice.lang +')';
+    option.textContent = voice.name + '('+ voice.lang +')';
     option.setAttribute('data-lang', voice.lang);
     option.setAttribute('data-name', voice.name);
+    voiceSelect.appendChild(option);
   });
-}
+};
 
 getVoices();
 if (synth.onvoiceschange !== undefind) {
@@ -38,21 +40,22 @@ const speak = () => {
   }
   if(textInput.value !== '') {
 // Add background animation
-    body.style.background = "#141414 url(img/wave.gif)";
-    body.style.backgroundRepeat = "repeat-x";
+    body.style.background = '#141414 url(img/wave.gif)';
+    body.style.backgroundRepeat = 'repeat-x';
     body.sytle.backgroundSize = '100% 100%';
 
     const speakText = new SpeechSynthesisUtterance(textInput.value);
 
     speakText.onend = e => {
       console.log('Done speaking...');
-    }
+      body.style.background = '#141414';
+    };
 
     speakText.onerror = e => {
       console.log('Something went wrong');
     }
 
-    const selectVoices = voiceSelect.selectedOptions[0]
+    const selectVoice = voiceSelect.selectedOptions[0]
     .getAttribute('data-name');
 
     voices.forEach(voice => {
@@ -66,7 +69,7 @@ const speak = () => {
 
     synth.speak(speakText);
   }
-}
+};
 
 textForm.addEventListener('submit', e => {
   e.preventDefault();
